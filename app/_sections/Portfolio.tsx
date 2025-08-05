@@ -59,7 +59,7 @@ const PortfolioSection = () => {
   const handleScrollClick = () => {
     const nextSection = document.getElementById("contact");
     if (nextSection) {
-      smoothScrollTo(nextSection.offsetTop, 300);
+      smoothScrollTo(nextSection.offsetTop, 100);
     }
   };
 
@@ -137,7 +137,7 @@ const PortfolioSection = () => {
 
       <button
         onClick={handleScrollClick}
-        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 animate-bounce"
+        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 animate-bounce hidden md:block"
         aria-label="Scroll to About"
       >
         <svg
