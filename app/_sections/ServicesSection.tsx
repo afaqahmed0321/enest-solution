@@ -3,14 +3,13 @@
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import {
-  ChevronDown,
   Monitor,
   Code2,
   Smartphone,
   Megaphone,
   BrainCircuit,
 } from "lucide-react";
-import { useAutoScroll } from "@/hooks/useAutoScroll";
+import { smoothScrollTo } from "@/lib/smoothScrollTo";
 
 const services = [
   {
@@ -41,11 +40,12 @@ const services = [
 ];
 
 const ServicesSection = () => {
-  const { scrollToNext } = useAutoScroll({
-    currentSectionId: "services",
-    previousSectionId: "team",
-    nextSectionId: "portfolio",
-  });
+  const handleScrollClick = () => {
+    const nextSection = document.getElementById("portfolio");
+    if (nextSection) {
+      smoothScrollTo(nextSection.offsetTop, 300);
+    }
+  };
 
   return (
     <section
@@ -104,15 +104,26 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
-        <button
-          type="button"
-          onClick={scrollToNext}
-          className="animate-bounce bg-cyan-400 rounded-full p-3 hover:bg-cyan-500 transition-colors duration-300"
+      <button
+        onClick={handleScrollClick}
+        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 animate-bounce"
+        aria-label="Scroll to About"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-10 w-10 text-cyan-400 hover:text-cyan-500 transition duration-300"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
         >
-          <ChevronDown className="h-8 w-8 text-white" />
-        </button>
-      </div>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </button>
     </section>
   );
 };

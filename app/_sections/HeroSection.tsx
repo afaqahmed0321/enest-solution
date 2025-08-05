@@ -2,15 +2,18 @@
 
 import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
+import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import TechScene from "@/components/TechScene";
-import { useAutoScroll } from "@/hooks/useAutoScroll";
+import { smoothScrollTo } from "@/lib/smoothScrollTo";
 
 const HeroSection = () => {
-  useAutoScroll({
-    currentSectionId: "hero",
-    nextSectionId: "about",
-  });
+  const handleScrollClick = () => {
+    const nextSection = document.getElementById("about");
+    if (nextSection) {
+      smoothScrollTo(nextSection.offsetTop, 300);
+    }
+  };
 
   return (
     <div
@@ -19,7 +22,6 @@ const HeroSection = () => {
     >
       <Navbar />
 
-      {/* Background 3D Canvas */}
       <div className="absolute inset-0 z-0">
         <Canvas camera={{ position: [0, 5, 10], fov: 65 }} gl={{ alpha: true }}>
           <ambientLight intensity={1} />
@@ -30,9 +32,13 @@ const HeroSection = () => {
         </Canvas>
       </div>
 
-      {/* Centered Hero Content */}
       <div className="relative z-10 flex items-center justify-center h-full px-8 md:px-20">
-        <div className="text-center max-w-3xl">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="text-center max-w-3xl"
+        >
           <h1 className="text-4xl md:text-6xl font-bold leading-tight">
             <span className="text-white">Modern Digital</span>{" "}
             <span className="text-cyan-400">Solutions</span>
@@ -46,23 +52,21 @@ const HeroSection = () => {
           >
             Get Started
           </button>
-        </div>
+        </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
-      <a
-        href="#about"
-        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 animate-bounce bg-cyan-400 rounded-full p-3 hover:bg-cyan-500 transition-colors duration-300"
+      <button
+        onClick={handleScrollClick}
+        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 animate-bounce"
+        aria-label="Scroll to About"
       >
-        <span className="sr-only">Scroll to About section</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-8 w-8 text-white"
+          className="h-10 w-10 text-cyan-400 hover:text-cyan-500 transition duration-300"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
           strokeWidth={2}
-          aria-hidden="true"
         >
           <path
             strokeLinecap="round"
@@ -70,7 +74,7 @@ const HeroSection = () => {
             d="M19 9l-7 7-7-7"
           />
         </svg>
-      </a>
+      </button>
     </div>
   );
 };

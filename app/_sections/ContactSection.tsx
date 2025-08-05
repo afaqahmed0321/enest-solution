@@ -9,7 +9,7 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="relative w-full min-h-screen bg-black text-white px-6 md:px-20 py-24 flex items-center justify-center"
+      className="snap-start relative w-full min-h-screen bg-black text-white px-6 md:px-20 py-24 flex items-center justify-center"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-7xl w-full items-center">
         <motion.div
