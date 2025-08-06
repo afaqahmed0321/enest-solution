@@ -7,9 +7,7 @@ import { Menu, X } from "lucide-react";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 
   const menuItems = [
     { name: "About", href: "#about" },
@@ -60,12 +58,13 @@ const Navbar = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="fixed inset-0 z-40 md:hidden"
+            className="fixed inset-0 z-40 md:hidden overflow-hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
+            {/* Backdrop */}
             <div
               className="absolute inset-0 bg-black/50 backdrop-blur-sm"
               onClick={toggleMenu}
@@ -77,8 +76,10 @@ const Navbar = () => {
               aria-label="Close menu"
             />
 
+            {/* Circular Menu Container */}
             <motion.div
-              className="absolute top-20 right-6 w-64 h-64 sm:w-72 sm:h-72 rounded-full bg-cyan-400/10 backdrop-blur-md border border-cyan-400/20"
+              className="absolute top-20 right-6 w-[20rem] h-[20rem] rounded-full 
+                         bg-cyan-400/10 backdrop-blur-md border border-cyan-400/20"
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
               exit={{ scale: 0, rotate: 180 }}
@@ -90,26 +91,30 @@ const Navbar = () => {
               style={{ transformOrigin: "top right" }}
             >
               {menuItems.map((item, index) => {
-                const angle = index * 90 - 45;
-                const radius = 80;
-                const radian = (angle * Math.PI) / 180;
-                const x = Math.cos(radian) * radius;
-                const y = Math.sin(radian) * radius;
+                const total = menuItems.length;
+                const angleDeg = (360 / total) * index - 90; // evenly spread
+                const angleRad = (angleDeg * Math.PI) / 180;
+                const radius = 105; // safe distance inside circle
+                const size = 48; // button size
+
+                const x = Math.cos(angleRad) * radius;
+                const y = Math.sin(angleRad) * radius;
 
                 return (
                   <motion.a
                     key={item.name}
                     href={item.href}
                     onClick={toggleMenu}
-                    className="absolute w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center
+                    className="absolute flex items-center justify-center
                                bg-cyan-400/20 backdrop-blur-md rounded-full
-                               text-white text-xs font-medium
+                               text-white text-[10px] font-semibold text-center
                                hover:bg-cyan-400/40 hover:text-cyan-100
-                               transition-all duration-300 cursor-pointer
-                               border border-cyan-400/30"
+                               transition-all duration-300 border border-cyan-400/30"
                     style={{
-                      left: `calc(50% + ${x}px - 1.5rem)`,
-                      top: `calc(50% + ${y}px - 1.5rem)`,
+                      width: `${size}px`,
+                      height: `${size}px`,
+                      left: `calc(50% + ${x}px - ${size / 2}px)`,
+                      top: `calc(50% + ${y}px - ${size / 2}px)`,
                     }}
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
@@ -121,18 +126,17 @@ const Navbar = () => {
                       damping: 25,
                     }}
                   >
-                    <span className="text-center leading-tight">
-                      {item.name}
-                    </span>
+                    {item.name}
                   </motion.a>
                 );
               })}
 
+              {/* Center Logo */}
               <div
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-                              w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center
-                              bg-cyan-400/30 backdrop-blur-md rounded-full
-                              border-2 border-cyan-400/50"
+                           w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center
+                           bg-cyan-400/30 backdrop-blur-md rounded-full
+                           border-2 border-cyan-400/50"
               >
                 <span className="text-white font-bold text-xs sm:text-sm">
                   CODYXA
