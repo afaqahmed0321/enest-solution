@@ -22,7 +22,7 @@ export default function Home() {
   useSmoothFullPageScroll(sections, 300);
 
   return (
-    <>
+    <main className="overflow-x-hidden">
       <HeroSection />
       <About />
       <TeamSection />
@@ -30,6 +30,6 @@ export default function Home() {
       <Portfolio />
       <ContactSection />
       <Footer />
-    </>
+    </main>
   );
 }
