@@ -32,7 +32,7 @@ export function Navbar() {
       {/* Mobile menu backdrop overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 z-40 bg-background/100 backdrop-blur-lg md:hidden"
           onClick={() => setIsOpen(false)}
           aria-hidden="true"
         />
