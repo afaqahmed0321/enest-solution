@@ -99,6 +99,12 @@ export function Footer() {
                   sales.enestsolution@gmail.com
                 </a>
               </li>
+              <li className="flex items-start gap-2 text-muted-foreground">
+                <Mail className="h-4 w-4 mt-0.5" />
+                <a href="mailto:8097440best@gmail.com" className="transition-colors hover:text-primary">
+                  8097440best@gmail.com
+                </a>
+              </li>
             </ul>
           </div>
         </div>
