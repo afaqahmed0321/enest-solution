@@ -1,90 +1,118 @@
-"use client";
+import Link from "next/link"
+import Image from "next/image"
+import { Facebook, Instagram, Linkedin, Mail, Phone } from "lucide-react"
 
-import { Facebook, Twitter, Linkedin, Mail, Phone, MapPin } from "lucide-react";
-
-const Footer = () => {
+export function Footer() {
   return (
-    <footer id="footer" className="bg-gradient-to-br from-cyan-900 via-cyan-800 to-cyan-950 text-white px-6 md:px-20 py-16">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-        <div>
-          <h3 className="text-2xl font-bold text-white mb-4">CODYXA</h3>
-          <p className="text-white">
-            Your idea, my code — delivering modern digital solutions across
-            mobile, web, AI, and automation.
-          </p>
-        </div>
+    <footer className="border-t bg-muted/30">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {/* Brand */}
+          <div className="space-y-4">
+            <Image src="/logo.png" alt="Enest Solution" width={150} height={40} className="h-10 w-auto" />
+            <p className="text-sm text-muted-foreground">From strategy to sales - we power your Amazon growth.</p>
+            <div className="flex gap-4">
+              <Link
+                href="https://www.facebook.com/Enestsolution/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground transition-colors hover:text-primary"
+              >
+                <Facebook className="h-5 w-5" />
+                <span className="sr-only">Facebook</span>
+              </Link>
+              <Link
+                href="https://www.instagram.com/enest_solution/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground transition-colors hover:text-primary"
+              >
+                <Instagram className="h-5 w-5" />
+                <span className="sr-only">Instagram</span>
+              </Link>
+              <Link
+                href="https://www.linkedin.com/company/enestsolution/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground transition-colors hover:text-primary"
+              >
+                <Linkedin className="h-5 w-5" />
+                <span className="sr-only">LinkedIn</span>
+              </Link>
+            </div>
+          </div>
 
-        <div>
-          <h4 className="text-lg font-semibold mb-4 text-white">Quick Links</h4>
-          <ul className="space-y-2 text-white">
-            <li>
-              <a href="#about" className="hover:text-white transition">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#services" className="hover:text-white transition">
-                Services
-              </a>
-            </li>
-            <li>
-              <a href="#portfolio" className="hover:text-white transition">
-                Portfolio
-              </a>
-            </li>
-            <li>
-              <a href="#contact" className="hover:text-white transition">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
+          {/* Quick Links */}
+          <div>
+            <h3 className="mb-4 text-sm font-semibold">Quick Links</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/about" className="text-muted-foreground transition-colors hover:text-primary">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="text-muted-foreground transition-colors hover:text-primary">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/case-studies" className="text-muted-foreground transition-colors hover:text-primary">
+                  Case Studies
+                </Link>
+              </li>
+              <li>
+                <Link href="/testimonials" className="text-muted-foreground transition-colors hover:text-primary">
+                  Testimonials
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-        <div>
-          <h4 className="text-lg font-semibold mb-4 text-white">Contact</h4>
-          <ul className="space-y-4 text-white">
-            <li className="flex items-center gap-2">
-              <Phone className="w-5 h-5 text-white" /> +1 (234) 567-890
-            </li>
-            <li className="flex items-center gap-2">
-              <Mail className="w-5 h-5 text-white" /> info@codelancr.com
-            </li>
-            <li className="flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-white" /> Business City, NY 54321
-            </li>
-          </ul>
-        </div>
+          {/* Services */}
+          <div>
+            <h3 className="mb-4 text-sm font-semibold">Services</h3>
+            <ul className="space-y-2 text-sm">
+              <li className="text-muted-foreground">Account Setup & Launch</li>
+              <li className="text-muted-foreground">Product Research</li>
+              <li className="text-muted-foreground">PPC Management</li>
+              <li className="text-muted-foreground">Listing Optimization</li>
+              <li className="text-muted-foreground">Brand Building</li>
+            </ul>
+          </div>
 
-        <div>
-          <h4 className="text-lg font-semibold mb-4 text-white">Follow Us</h4>
-          <div className="flex space-x-4">
-            <a
-              href="#"
-              className="bg-white hover:bg-cyan-600 transition p-2 rounded-full"
-            >
-              <Facebook className="h-5 w-5 text-cyan-500" />
-            </a>
-            <a
-              href="#"
-              className="bg-white hover:bg-cyan-600 transition p-2 rounded-full"
-            >
-              <Twitter className="h-5 w-5 text-cyan-500" />
-            </a>
-            <a
-              href="#"
-              className="bg-white hover:bg-cyan-600 transition p-2 rounded-full"
-            >
-              <Linkedin className="h-5 w-5 text-cyan-500" />
-            </a>
+          {/* Contact */}
+          <div>
+            <h3 className="mb-4 text-sm font-semibold">Contact Us</h3>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-center gap-2 text-muted-foreground">
+                <Phone className="h-4 w-4" />
+                <span>03478097440</span>
+              </li>
+              <li className="flex items-center gap-2 text-muted-foreground">
+                <Phone className="h-4 w-4" />
+                <span>03264679125</span>
+              </li>
+              <li className="flex items-start gap-2 text-muted-foreground">
+                <Mail className="h-4 w-4 mt-0.5" />
+                <a href="mailto:sales.enestsolution@gmail.com" className="transition-colors hover:text-primary">
+                  sales.enestsolution@gmail.com
+                </a>
+              </li>
+              <li className="flex items-start gap-2 text-muted-foreground">
+                <Mail className="h-4 w-4 mt-0.5" />
+                <a href="mailto:8097440best@gmail.com" className="transition-colors hover:text-primary">
+                  8097440best@gmail.com
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
 
-      <div className="mt-16 text-center text-sm text-white border-t border-gray-800 pt-6">
-        © {new Date().getFullYear()} Codyxa. All rights reserved.
+        <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
+          <p>&copy; {new Date().getFullYear()} Enest Solution. All rights reserved.</p>
+        </div>
       </div>
     </footer>
-  );
-};
-
-export default Footer;
+  )
+}

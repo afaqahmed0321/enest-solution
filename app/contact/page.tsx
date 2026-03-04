@@ -171,6 +171,14 @@ export default function ContactPage() {
                       sales.enestsolution@gmail.com
                     </a>
                   </CardContent>
+                  <CardContent>
+                    <a
+                      href="mailto:8097440best@gmail.com"
+                      className="text-muted-foreground transition-colors hover:text-primary"
+                    >
+                      8097440best@gmail.com
+                    </a>
+                  </CardContent>
                 </Card>
 
                 <Card className="border-border">
@@ -243,6 +251,17 @@ export default function ContactPage() {
               className="bg-white text-primary hover:bg-white/90 shadow-2xl hover:shadow-accent/50 transition-all hover:scale-105"
             >
               <a href="mailto:sales.enestsolution@gmail.com">
+                Email Us Now
+                <Mail className="ml-2 h-5 w-5" />
+              </a>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-2 border-white/30 bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm shadow-lg"
+            >
+              <a href="mailto:8097440best@gmail.com">
                 Email Us Now
                 <Mail className="ml-2 h-5 w-5" />
               </a>
